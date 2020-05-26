@@ -26,6 +26,7 @@ mccabe
 oauthlib
 pep8
 Pillow
+psycopg2
 pycodestyle
 pycparser
 PyHamcrest
@@ -41,6 +42,7 @@ typed-ast
 urllib3
 wrapt
 zope.interface
+django-countries
 
 gunicorn
 django-heroku
