@@ -25,7 +25,7 @@ SECRET_KEY = '5uip33nsu%u!e03sjd59n_dx9kk-ay0@ly+9&-8@pii8jtvo+a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ifacez.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,22 +127,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-if DEBUG:
-   STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static'),
-   ]
-else:
-   STATIC_ROOT = os.path.join(BASE_DIR,'static')
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 #STATIC_URL = '/static/'
+#if DEBUG:
+#  STATICFILES_DIRS = [
+#   os.path.join(BASE_DIR, 'static'),
+#   ]
+#else:
+#   STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
 #MEDIA_URL = '/media/'
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-#PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-#STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'staticfiles')
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
