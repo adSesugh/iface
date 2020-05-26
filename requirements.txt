@@ -47,3 +47,4 @@ stripe
 
 gunicorn
 django-heroku
+whitenoise
