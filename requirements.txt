@@ -45,8 +45,8 @@ zope.interface
 django-countries
 stripe
 django_autoslug
-pip install opencv-python
-pip install opencv-contrib-python --user
+opencv-python-headless
+opencv-contrib-python-headless --user
 scikit-learn
 logging
 matplotlib
