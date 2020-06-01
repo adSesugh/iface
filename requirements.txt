@@ -45,8 +45,11 @@ zope.interface
 django-countries
 stripe
 django_autoslug
+opencv-python
 opencv-contrib-python
 scikit-learn
+logging
+matplotlib
 
 gunicorn
 django-heroku
