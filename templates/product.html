@@ -17,13 +17,13 @@
           <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
-        <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-          Women
+        <a href="" class="stext-109 cl8 hov-cl1 trans-04">
+          {{ item.get_category_display }}
           <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <span class="stext-109 cl4">
-          {{ object.title }}
+          {{ item.title }}
         </span>
       </div>
     </div>
@@ -40,36 +40,29 @@
               <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
               <div class="slick3 gallery-lb">
-                <div class="item-slick3" data-thumb="{% static 'images/product-detail-01.jpg' %}">
+                <div class="item-slick3" data-thumb="{{ item.image.url }}">
                   <div class="wrap-pic-w pos-relative">
-                    <img src="{% static 'images/product-detail-01.jpg' %}" alt="IMG-PRODUCT">
+                    <img src="{{ item.image.url }}" alt="IMG-PRODUCT">
 
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{% static 'images/product-detail-01.jpg' %}">
-                      <i class="fa fa-expand"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <div class="item-slick3" data-thumb="{% static 'images/product-detail-02.jpg' %}">
-                  <div class="wrap-pic-w pos-relative">
-                    <img src="{% static 'images/product-detail-02.jpg' %}" alt="IMG-PRODUCT">
-
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{% static 'images/product-detail-02.jpg' %}">
-                      <i class="fa fa-expand"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <div class="item-slick3" data-thumb="{% static 'images/product-detail-03.jpg' %}">
-                  <div class="wrap-pic-w pos-relative">
-                    <img src="{% static 'images/product-detail-03.jpg' %}" alt="IMG-PRODUCT">
-
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{% static 'images/product-detail-03.jpg' %}">
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ item.image.url }}">
                       <i class="fa fa-expand"></i>
                     </a>
                   </div>
                 </div>
               </div>
+              {% for preview in item.item_review_image_set.all %}
+                <div class="slick3 gallery-lb">
+                  <div class="item-slick3" data-thumb="{{ preview.review_image }}">
+                    <div class="wrap-pic-w pos-relative">
+                      <img src="{{ preview.review_image }}" alt="IMG-PRODUCT">
+  
+                      <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ preview.review_image }}">
+                        <i class="fa fa-expand"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -77,68 +70,29 @@
         <div class="col-md-6 col-lg-5 p-b-30">
           <div class="p-r-50 p-t-5 p-lr-0-lg">
             <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-              {{ object.title }}
+              {{ item.title }}
             </h4>
 
             <span class="mtext-106 cl2">
-              {% if object.discount_price %}
+              {% if item.discount_price %}
                 <span class="mr-1">
-                  <del>${{ object.price }}</del>
+                  <del>&#8358;{{ item.price }}</del>
                 </span>
-                <span>${{ object.discount_price }}</span>
+                <span>&#8358;{{ item.discount_price }}</span>
                 {% else %}
-                <span>${{ object.price }}</span>
+                <span>&#8358;{{ item.price }}</span>
               {% endif %}
             </span>
 
             <p class="stext-102 cl3 p-t-23">
-              {{ object.description }}
+              {{ item.short_description }}
             </p>
             
             <!--  -->
             <div class="p-t-33">
               <div class="flex-w flex-r-m p-b-10">
-                <div class="size-203 flex-c-m respon6">
-                  Size
-                </div>
-
-                <div class="size-204 respon6-next">
-                  <div class="rs1-select2 bor8 bg0">
-                    <select class="js-select2" name="time">
-                      <option>Choose an option</option>
-                      <option>Size S</option>
-                      <option>Size M</option>
-                      <option>Size L</option>
-                      <option>Size XL</option>
-                    </select>
-                    <div class="dropDownSelect2"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-w flex-r-m p-b-10">
-                <div class="size-203 flex-c-m respon6">
-                  Color
-                </div>
-
-                <div class="size-204 respon6-next">
-                  <div class="rs1-select2 bor8 bg0">
-                    <select class="js-select2" name="time">
-                      <option>Choose an option</option>
-                      <option>Red</option>
-                      <option>Blue</option>
-                      <option>White</option>
-                      <option>Grey</option>
-                    </select>
-                    <div class="dropDownSelect2"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-w flex-r-m p-b-10">
                 <div class="size-204 flex-w flex-m respon6-next">
-                  
-                  <a href="{{ object.get_add_to_cart_url }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                  <a href="{{ item.get_add_to_cart_url }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                     Add to cart
                   </a>
                 </div>
@@ -172,7 +126,7 @@
             <div class="tab-pane fade show active" id="description" role="tabpanel">
               <div class="how-pos2 p-lr-15-md">
                 <p class="stext-102 cl6">
-                  Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+                  {{ item.description }}
                 </p>
               </div>
             </div>

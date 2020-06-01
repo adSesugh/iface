@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models import Sum
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
+from autoslug import AutoSlugField
+from django.contrib.auth.models import User
 
 
 CATEGORY_CHOICES = (
@@ -36,7 +38,7 @@ class UserProfile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=300)
-    slug = models.SlugField()
+    slug = AutoSlugField(populate_from="name", always_update="True")
     photo = models.ImageField(blank=False, default='media_root/default.png')
 
     def __str__(self):
@@ -49,8 +51,9 @@ class Item(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
-    slug = models.SlugField()
-    description = models.TextField()
+    slug = AutoSlugField(populate_from="title", always_update="True")
+    short_description = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     image = models.ImageField()
     trending = models.BooleanField(default=False)
 
@@ -72,11 +75,15 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+    def get_category_display(self):
+        return self.category.name
 
 class ItemReviewImage(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
     review_image = models.ImageField(blank=True)
 
+    def __str__(self):
+        return f"{self.item.title}"
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -200,3 +207,10 @@ def userprofile_receiver(sender, instance, created, *args, **kwargs):
 
 post_save.connect(userprofile_receiver, sender=settings.AUTH_USER_MODEL)
 
+
+class UserDetail(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    card_number = models.CharField(max_length=100)
+    card_name = models.CharField(max_length=100)
+    card_month = models.CharField(max_length=2)
+    card_year = models.CharField(max_length=4)

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+  {% include 'partials/page_header.html' %}
+{% endblock header %}
+
+{% block content %}
+<section class="bg0 p-t-12 p-b-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-lg-3 p-b-80">
+        <div class="side-menu">
+          <div class="p-t-55">
+            <h4 class="mtext-112 cl2 p-b-20">Account Menu</h4>
+            <ul>
+              <li class="bor18">
+                <a href="{% url 'core:account' request.user.id  %}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Dashboard
+                </a>
+              </li>
+              <li class="bor18">
+                <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Orders
+                </a>
+              </li>
+              <li class="bor18">
+                <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Payments
+                </a>
+              </li>
+              <li class="bor18">
+                <a href="{% url 'core:facetra' request.user.id  %}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Face Training
+                </a>
+              </li>
+              <li class="bor18">
+                <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Card Details
+                </a>
+              </li>
+              <li class="bor18">
+                <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                  Edit Account
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-lg-9 p-b-80">
+        {% block apanel %}
+        {%  endblock apanel %}
+      </div>
+    </div>
+  </div>
+</section>	
+{% endblock content %}

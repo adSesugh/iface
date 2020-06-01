@@ -2117,6 +2117,61 @@ input.num-product::-webkit-inner-spin-button {
   left: 12px;
 }
 
+.label-hot {
+  position: relative;
+}
+
+.label-hot::after {
+  content: attr(data-label);
+  font-family: Montserrat-Regular;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.2;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  min-width: 50px;
+  height: 22px;
+  border-radius: 11px;
+  padding: 0 6px;
+  background-color: #e01541;
+  top: 42px;
+  left: 12px;
+}
+
+.label-trending {
+  position: relative;
+}
+
+.label-trending::after {
+  content: attr(data-label);
+  font-family: Montserrat-Regular;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.2;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  min-width: 50px;
+  height: 22px;
+  border-radius: 11px;
+  padding: 0 6px;
+  background-color: #eb410d;
+  top: 42px;
+  left: 12px;
+}
 
 
 /*==================================================================

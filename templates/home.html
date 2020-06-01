@@ -29,24 +29,27 @@
               All Products
             </button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Women">
               Women
             </button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Men">
               Men
             </button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Bag">
               Bag
             </button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Shoes">
               Shoes
             </button>
 
-            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Watches">
               Watches
+            </button>
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".Accessories">
+              Accessories
             </button>
           </div>
 
@@ -270,10 +273,10 @@
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ item.get_category_display }}">
               <!-- Block2 -->
               <div class="block2">
-                <div class="block2-pic hov-img0">
+                <div class="block2-pic hov-img0 {% if 'Hot' in item.get_label_display %} label-hot {% elif 'Trending' in item.get_label_display %} label-trending {% elif 'New' in item.get_label_display %} label-new {% endif %}" data-label="{{ item.get_label_display }}">
                   <img src="{{ item.image.url }}" alt="IMG-PRODUCT">
 
-                  <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                  <a href="{{ item.get_absolute_url }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                     Quick View
                   </a>
                 </div>
@@ -286,9 +289,9 @@
 
                     <span class="stext-105 cl3">
                       {% if item.discount_price %}
-                        {{ item.discount_price }}
+                        &#8358;{{ item.discount_price }}
                       {% else %}
-                        {{ item.price }}
+                        &#8358;{{ item.price }}
                       {% endif %}
                     </span>
                   </div>

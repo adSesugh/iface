@@ -16,7 +16,7 @@
 						Help & FAQs
 					</a>
 					{% if request.user.is_authenticated %}
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="{% url 'core:account' request.user.id  %}" class="flex-c-m trans-04 p-lr-25">
 							{{ request.user.username }}
 						</a>
 						<a href="{% url 'account_logout' %}" class="flex-c-m trans-04 p-lr-25">
@@ -85,7 +85,7 @@
 	<div class="wrap-header-mobile">
 		<!-- Logo moblie -->		
 		<div class="logo-mobile">
-			<a href="index.html"><img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
+			<a href="/"><img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
 		</div>
 
 		<!-- Icon header -->
@@ -127,7 +127,7 @@
 						Help & FAQs
 					</a>
 					{% if request.user.is_authenticated %}
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
+						<a href="{% url 'core:account' request.user.id  %}" class="flex-c-m p-lr-10 trans-04">
 							My Account
 						</a>
 						<a href="{% url 'account_logout' %}" class="flex-c-m p-lr-10 trans-04">
@@ -162,21 +162,5 @@
 				<a href="contact.html">Contact</a>
 			</li>
 		</ul>
-	</div>
-
-	<!-- Modal Search -->
-	<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-		<div class="container-search-header">
-			<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-				<img src="{% static 'images/icons/icon-close2.png' %}" alt="CLOSE">
-			</button>
-
-			<form class="wrap-search-header flex-w p-l-15">
-				<button class="flex-c-m trans-04">
-					<i class="zmdi zmdi-search"></i>
-				</button>
-				<input class="plh3" type="text" name="search" placeholder="Search...">
-			</form>
-		</div>
 	</div>
 </header>

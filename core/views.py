@@ -3,12 +3,13 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
-from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
+from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile, ItemReviewImage
+from django.contrib.auth.models import User
 
 import random
 import string
@@ -370,7 +371,26 @@ class OrderSummaryView(LoginRequiredMixin, View):
 
 class ItemDetailView(DetailView):
     model = Item
+    context_object_name = "item"
     template_name = "product.html"
+
+
+@login_required
+def get_user_detail(request, id):
+    user = get_object_or_404(User, id=id)
+    context = {
+        'user': user
+    }
+    return render(request, 'dashboard.html', context)
+
+
+@login_required
+def get_facetra(request, id):
+    user = get_object_or_404(User, id=id)
+    context = {
+        'user': user
+    }
+    return render(request, 'facetra.html', context)
 
 
 @login_required
