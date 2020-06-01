@@ -48,7 +48,6 @@ django_autoslug
 opencv-python-headless
 opencv-contrib-python-headless
 scikit-learn
-logging
 matplotlib
 
 gunicorn
