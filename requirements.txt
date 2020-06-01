@@ -46,7 +46,7 @@ django-countries
 stripe
 django_autoslug
 opencv-python-headless
-opencv-contrib-python-headless --user
+opencv-contrib-python-headless
 scikit-learn
 logging
 matplotlib
